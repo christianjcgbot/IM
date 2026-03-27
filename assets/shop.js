@@ -9,7 +9,7 @@ const PRODUCTS = [
     id: 'tennis-tee-mujer',
     name: 'Tennis Tee Mujer',
     subtitle: 'Tenis · Dryfit',
-    cats: ['tenis'],
+    cats: ['tenis', 'tenis-mujer'],
     price: 25990,
     link: 'https://pay.sumup.com/b2c/QOFL4KD7',
     desc: 'Polera técnica dryfit de alta performance. Tejido transpirable de secado rápido, diseñada para el movimiento libre. Corte deportivo femenino con acabados premium.',
@@ -21,7 +21,7 @@ const PRODUCTS = [
     id: 'tennis-tee-hombre',
     name: 'Tennis Tee Hombre',
     subtitle: 'Tenis · Dryfit',
-    cats: ['tenis'],
+    cats: ['tenis', 'tenis-hombre'],
     price: 25990,
     link: 'https://pay.sumup.com/b2c/QOFL4KD7',
     desc: 'Polera técnica dryfit de alta performance. Tejido transpirable de secado rápido, diseñada para el movimiento libre. Corte deportivo masculino con acabados premium.',
@@ -118,22 +118,57 @@ if (grid) {
     grid.appendChild(card);
   });
 
-  // Category filter
+  function filterProducts(f) {
+    let visible = 0;
+    document.querySelectorAll('.product-card-item').forEach(c => {
+      const cats = JSON.parse(c.dataset.cats||'[]');
+      const show = f==='all' || cats.includes(f);
+      c.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    const empty = document.getElementById('grid-empty');
+    if (empty) empty.style.display = visible===0 ? 'block' : 'none';
+  }
+
+  // Main category buttons
   document.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const item = btn.closest('.cat-item');
+      const hasDropdown = item && item.querySelector('.cat-dropdown');
+
+      // Toggle dropdown if exists
+      if (hasDropdown) {
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) { item.classList.add('open'); return; }
+        return;
+      }
+
+      // Close all dropdowns
+      document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('open'));
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.cat-dropdown button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filterProducts(btn.dataset.cat);
+    });
+  });
+
+  // Dropdown sub-buttons
+  document.querySelectorAll('.cat-dropdown button').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.cat-dropdown button').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      const f = btn.dataset.cat;
-      let visible = 0;
-      document.querySelectorAll('.product-card-item').forEach(c => {
-        const cats = JSON.parse(c.dataset.cats||'[]');
-        const show = f==='all' || cats.includes(f);
-        c.classList.toggle('hidden', !show);
-        if (show) visible++;
-      });
-      const empty = document.getElementById('grid-empty');
-      if (empty) empty.style.display = visible===0 ? 'block' : 'none';
+      document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('open'));
+      filterProducts(btn.dataset.cat);
     });
+  });
+
+  // Close dropdowns clicking outside
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.cat-item')) {
+      document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('open'));
+    }
   });
 }
 
