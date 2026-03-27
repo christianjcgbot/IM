@@ -576,7 +576,7 @@
       });
 
       // Load products
-      fetch('/shop/stock.json')
+      fetch('stock.json')
         .then(r => r.json())
         .then(data => {
           const grid = document.getElementById('shop-grid');
