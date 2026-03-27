@@ -5,6 +5,12 @@
   force = true
 
 [[redirects]]
+  from = "https://shop.imsportswear.cl/producto"
+  to = "/shop/producto.html"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "https://shop.imsportswear.cl/assets/*"
   to = "/assets/:splat"
   status = 200
