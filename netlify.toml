@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "https://shop.imsportswear.cl/*"
+  to = "/shop/:splat"
+  status = 200
+  force = true
