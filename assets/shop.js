@@ -6,15 +6,26 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 const PRODUCTS = [
   {
-    id: 'tennis-tee',
-    name: 'Tennis Tee',
-    subtitle: 'Dryfit Performance',
-    cats: ['tenis', 'hombre', 'mujer'],
+    id: 'tennis-tee-mujer',
+    name: 'Tennis Tee Mujer',
+    subtitle: 'Tenis · Dryfit',
+    cats: ['tenis'],
     price: 25990,
     link: 'https://pay.sumup.com/b2c/QOFL4KD7',
-    desc: 'Polera técnica dryfit de alta performance. Tejido transpirable de secado rápido, diseñada para el movimiento libre. Corte deportivo con acabados premium. Disponible en Hombre y Mujer.',
+    desc: 'Polera técnica dryfit de alta performance. Tejido transpirable de secado rápido, diseñada para el movimiento libre. Corte deportivo femenino con acabados premium.',
     variants: {
-      Mujer:  { Negro: {XS:2,M:3,L:3}, Navy: {M:3,L:3}, Blanco: {M:3,L:3} },
+      Mujer: { Negro: {XS:2,M:3,L:3}, Navy: {M:3,L:3}, Blanco: {M:3,L:3} }
+    }
+  },
+  {
+    id: 'tennis-tee-hombre',
+    name: 'Tennis Tee Hombre',
+    subtitle: 'Tenis · Dryfit',
+    cats: ['tenis'],
+    price: 25990,
+    link: 'https://pay.sumup.com/b2c/QOFL4KD7',
+    desc: 'Polera técnica dryfit de alta performance. Tejido transpirable de secado rápido, diseñada para el movimiento libre. Corte deportivo masculino con acabados premium.',
+    variants: {
       Hombre: { Negro: {L:3,XL:3}, Navy: {L:3} }
     }
   },
