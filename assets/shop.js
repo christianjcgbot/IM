@@ -154,6 +154,9 @@ if (grid) {
     });
   });
 
+  // Default: filter to Tenis on load
+  filterProducts('tenis');
+
   // Sub-category buttons
   document.querySelectorAll('.subcat-btn').forEach(btn => {
     btn.addEventListener('click', () => {
