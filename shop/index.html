@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../assets/styles.css?v=2.1" />
+    <link rel="stylesheet" href="/assets/styles.css?v=2.1" />
     <style>
       /* ── Shop Layout ── */
       .shop-hero {
@@ -285,7 +285,7 @@
           </ul>
         </nav>
         <div class="brand-mark" aria-label="IM Sportswear">
-          <a href="../index.html" class="brand-logo">IM</a>
+          <a href="/" class="brand-logo">IM</a>
           <span class="brand-tagline">Classic · Sport · Modern Life</span>
         </div>
         <div class="nav-actions">
@@ -333,8 +333,8 @@
       <div class="container footer-bottom">
         <p>© <span id="year"></span> IM Sportswear. Todos los derechos reservados.</p>
         <div>
-          <a href="../terminos.html">Términos</a>
-          <a href="../privacidad.html">Privacidad</a>
+          <a href="/terminos.html">Términos</a>
+          <a href="/privacidad.html">Privacidad</a>
         </div>
       </div>
     </footer>
@@ -370,7 +370,7 @@
 
         card.innerHTML = `
           <div class="product-image">
-            <img src="../assets/img/${p.id}.jpg" alt="${p.name}"
+            <img src="/assets/img/${p.id}.jpg" alt="${p.name}"
               onerror="this.parentElement.style.background='#ece9e4';this.style.display='none'"
               loading="lazy" />
             ${totalS === 0 ? '<span class="product-badge badge-agotado">Agotado</span>' : '<span class="product-badge">Nuevo</span>'}
@@ -576,7 +576,7 @@
       });
 
       // Load products
-      fetch('stock.json')
+      fetch('/shop/stock.json')
         .then(r => r.json())
         .then(data => {
           const grid = document.getElementById('shop-grid');

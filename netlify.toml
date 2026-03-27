@@ -1,4 +1,10 @@
 [[redirects]]
+  from = "https://shop.imsportswear.cl/"
+  to = "/shop/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "https://shop.imsportswear.cl/*"
   to = "/shop/:splat"
   status = 200
