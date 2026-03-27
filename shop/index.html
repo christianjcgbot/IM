@@ -3,293 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="IM Sportswear — Tienda oficial. Tenis, Running, Urban y Accesorios." />
     <title>Shop — IM Sportswear</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/assets/styles.css?v=2.2" />
-    <style>
-      /* ── Shop Layout ── */
-      .shop-hero {
-        background: var(--navy-deep);
-        color: #fff;
-        padding: 64px 0 48px;
-        text-align: center;
-      }
-      .shop-hero h1 {
-        font-family: var(--font-display);
-        font-size: clamp(2.4rem, 5vw, 4rem);
-        font-weight: 600;
-        margin: 0 0 8px;
-        letter-spacing: -0.02em;
-      }
-      .shop-hero p {
-        font-size: 0.75rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        opacity: 0.55;
-        margin: 0;
-      }
-
-      /* ── Filters ── */
-      .shop-filters {
-        border-bottom: 1px solid var(--line);
-        background: #fff;
-        position: sticky;
-        top: 64px;
-        z-index: 10;
-      }
-      .filters-wrap {
-        display: flex;
-        align-items: center;
-        gap: 0;
-        overflow-x: auto;
-        scrollbar-width: none;
-        padding: 0;
-      }
-      .filters-wrap::-webkit-scrollbar { display: none; }
-      .filter-btn {
-        flex-shrink: 0;
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-family: var(--font-ui);
-        font-size: 0.7rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: var(--muted);
-        padding: 18px 24px;
-        border-bottom: 2px solid transparent;
-        transition: color 0.2s, border-color 0.2s;
-      }
-      .filter-btn:hover { color: var(--navy); }
-      .filter-btn.active {
-        color: var(--navy);
-        border-bottom-color: var(--navy);
-        font-weight: 600;
-      }
-
-      /* ── Grid ── */
-      .shop-body {
-        padding: 56px 0 96px;
-      }
-      .shop-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 40px 32px;
-      }
-
-      /* ── Product Card ── */
-      .product-card {
-        display: flex;
-        flex-direction: column;
-      }
-      .product-card.hidden { display: none; }
-
-      .product-image {
-        aspect-ratio: 3 / 4;
-        background: var(--beige);
-        border-radius: 4px;
-        overflow: hidden;
-        position: relative;
-        margin-bottom: 20px;
-      }
-      .product-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-      }
-      .product-card:hover .product-image img {
-        transform: scale(1.04);
-      }
-      .product-badge {
-        position: absolute;
-        top: 14px;
-        left: 14px;
-        background: var(--navy-deep);
-        color: #fff;
-        font-size: 0.6rem;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        padding: 5px 10px;
-        border-radius: 2px;
-      }
-      .badge-agotado { background: rgba(24,41,61,0.4); }
-
-      .product-info { flex: 1; }
-      .product-category {
-        font-size: 0.65rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 4px;
-      }
-      .product-name {
-        font-family: var(--font-display);
-        font-size: 1.3rem;
-        font-weight: 600;
-        margin: 0 0 4px;
-        letter-spacing: -0.01em;
-      }
-      .product-price {
-        font-size: 0.9rem;
-        font-weight: 500;
-        color: var(--navy);
-        margin-bottom: 20px;
-      }
-
-      /* ── Variant Selectors ── */
-      .variant-group { margin-bottom: 14px; }
-      .variant-label {
-        font-size: 0.65rem;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 8px;
-        display: flex;
-        justify-content: space-between;
-      }
-      .variant-label span { color: var(--navy); font-weight: 600; }
-      .variant-options {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-      }
-      .variant-opt {
-        background: none;
-        border: 1px solid var(--line);
-        border-radius: 2px;
-        cursor: pointer;
-        font-family: var(--font-ui);
-        font-size: 0.72rem;
-        letter-spacing: 0.08em;
-        padding: 6px 12px;
-        color: var(--navy);
-        transition: all 0.15s;
-      }
-      .variant-opt:hover:not(:disabled) {
-        border-color: var(--navy);
-      }
-      .variant-opt.selected {
-        background: var(--navy);
-        border-color: var(--navy);
-        color: #fff;
-      }
-      .variant-opt:disabled {
-        opacity: 0.3;
-        cursor: not-allowed;
-        text-decoration: line-through;
-      }
-
-      /* Color dots */
-      .color-dot {
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        border: 2px solid transparent;
-        cursor: pointer;
-        padding: 0;
-        transition: transform 0.15s, border-color 0.15s;
-        position: relative;
-      }
-      .color-dot:hover:not(:disabled) { transform: scale(1.1); }
-      .color-dot.selected { border-color: var(--navy); }
-      .color-dot:disabled { opacity: 0.25; cursor: not-allowed; }
-      .color-dot[data-color="Negro"]  { background: #141414; }
-      .color-dot[data-color="Navy"]   { background: #18293d; }
-      .color-dot[data-color="Blanco"] { background: #f5f5f5; border: 2px solid #ddd; }
-      .color-dot[data-color="Burdeo"] { background: #6b1f2a; }
-
-      /* ── Stock info ── */
-      .stock-info {
-        font-size: 0.68rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 16px;
-        min-height: 1.2em;
-      }
-      .stock-info.low { color: #b45309; }
-      .stock-info.out { color: rgba(24,41,61,0.35); }
-
-      /* ── Buy Button ── */
-      .btn-buy {
-        display: block;
-        width: 100%;
-        text-align: center;
-        padding: 14px;
-        background: var(--navy);
-        color: #fff;
-        border: none;
-        border-radius: 2px;
-        font-family: var(--font-ui);
-        font-size: 0.72rem;
-        font-weight: 600;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        cursor: pointer;
-        transition: background 0.2s;
-        text-decoration: none;
-        margin-top: 8px;
-      }
-      .btn-buy:hover:not(:disabled) { background: var(--navy-deep); }
-      .btn-buy:disabled {
-        background: rgba(24,41,61,0.2);
-        cursor: not-allowed;
-      }
-      .btn-buy.pending {
-        background: rgba(24,41,61,0.4);
-        cursor: default;
-      }
-
-      /* ── Despacho banner ── */
-      .despacho-bar {
-        background: var(--beige);
-        border-top: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
-        padding: 14px 0;
-        text-align: center;
-        font-size: 0.7rem;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
-
-      /* ── Empty state ── */
-      .shop-empty {
-        text-align: center;
-        padding: 80px 0;
-        display: none;
-      }
-      .shop-empty p {
-        color: var(--muted);
-        font-size: 0.9rem;
-      }
-
-      @media (max-width: 640px) {
-        .shop-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; }
-        .filter-btn { padding: 16px 16px; font-size: 0.65rem; }
-      }
-    </style>
+    <link rel="stylesheet" href="/assets/shop.css?v=1.0" />
   </head>
   <body>
-    <header class="site-header">
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <header class="site-header" id="top">
       <div class="container nav-wrap">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Abrir menú">
+          <span></span><span></span><span></span>
+        </button>
+
         <nav class="site-nav" aria-label="Principal">
           <ul id="site-menu" class="menu-left">
-            <li><a href="../index.html#urban">Urban</a></li>
-            <li><a href="../index.html#tenis">Tenis</a></li>
-            <li><a href="../index.html#running">Running</a></li>
-            <li><a href="../index.html#accesorios">Accesorios</a></li>
+            <li><a href="https://imsportswear.cl/#urban">Urban</a></li>
+            <li><a href="https://imsportswear.cl/#tenis">Tenis</a></li>
+            <li><a href="https://imsportswear.cl/#running">Running</a></li>
+            <li><a href="https://imsportswear.cl/#accesorios">Accesorios</a></li>
           </ul>
         </nav>
+
         <div class="brand-mark" aria-label="IM Sportswear">
-          <a href="/" class="brand-logo">IM</a>
+          <a href="https://imsportswear.cl" class="brand-logo">IM</a>
           <span class="brand-tagline">Classic · Sport · Modern Life</span>
         </div>
+
         <div class="nav-actions">
-          <a class="bag-link" href="#" aria-label="Carrito">
+          <a class="shop-link" href="https://shop.imsportswear.cl">Colección</a>
+          <a class="bag-link" href="#" aria-label="Tienda">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M6 8h12l-1 12H7L6 8Zm3-1V6a3 3 0 1 1 6 0v1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -298,38 +45,108 @@
       </div>
     </header>
 
-    <div class="despacho-bar">
-      Despacho en 5 días hábiles · Envío gratis sobre $50.000 · Devolución 30 días
-    </div>
+    <main id="contenido">
 
-    <div class="shop-hero">
-      <div class="container">
-        <h1>Colección</h1>
-        <p>IM Sportswear — Classic · Sport · Modern Life</p>
-      </div>
-    </div>
-
-    <div class="shop-filters">
-      <div class="container filters-wrap">
-        <button class="filter-btn active" data-filter="all">Todo</button>
-        <button class="filter-btn" data-filter="mujer">Mujer</button>
-        <button class="filter-btn" data-filter="hombre">Hombre</button>
-        <button class="filter-btn" data-filter="unisex">Unisex</button>
-        <button class="filter-btn" data-filter="performance">Performance</button>
-        <button class="filter-btn" data-filter="lifestyle">Lifestyle</button>
-      </div>
-    </div>
-
-    <main class="shop-body">
-      <div class="container">
-        <div class="shop-grid" id="shop-grid"></div>
-        <div class="shop-empty" id="shop-empty">
-          <p>No hay productos en esta categoría.</p>
+      <div class="trust-bar">
+        <div class="container trust-wrap">
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M13 5l7 7-7 7"/>
+            </svg>
+            <span>Despacho 5 días hábiles</span>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/>
+            </svg>
+            <span>Devolución 30 días</span>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            <span>Pago 100% seguro</span>
+          </div>
         </div>
       </div>
+
+      <section class="shop-hero tone-beige">
+        <div class="container shop-hero-content">
+          <p class="eyebrow">IM Sportswear · 2026</p>
+          <h1>COLECCIÓN</h1>
+          <p class="hero-quote">Elegancia funcional para quienes se mueven con propósito</p>
+        </div>
+      </section>
+
+      <div class="shop-filters-bar">
+        <div class="container shop-filters-wrap">
+          <button class="filter-pill active" data-filter="all">Todo</button>
+          <button class="filter-pill" data-filter="mujer">Mujer</button>
+          <button class="filter-pill" data-filter="hombre">Hombre</button>
+          <button class="filter-pill" data-filter="unisex">Unisex</button>
+          <button class="filter-pill" data-filter="performance">Performance</button>
+          <button class="filter-pill" data-filter="lifestyle">Lifestyle</button>
+        </div>
+      </div>
+
+      <section class="shop-section">
+        <div class="container">
+          <div class="shop-grid" id="shop-grid"></div>
+          <p class="shop-empty" id="shop-empty" style="display:none">No hay productos en esta categoría.</p>
+        </div>
+      </section>
+
     </main>
 
     <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <p class="brand-logo">IM</p>
+          <p>Redefiniendo el sportswear clásico para la vida moderna. Calidad, minimalismo y rendimiento en cada costura.</p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Navegación">
+          <h3>Navegación</h3>
+          <ul>
+            <li><a href="https://imsportswear.cl/#urban">Urban</a></li>
+            <li><a href="https://imsportswear.cl/#tenis">Tenis</a></li>
+            <li><a href="https://imsportswear.cl/#running">Running</a></li>
+            <li><a href="https://imsportswear.cl/#accesorios">Accesorios</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-nav" aria-label="Soporte">
+          <h3>Soporte</h3>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Devoluciones</a></li>
+            <li><a href="#">Envíos</a></li>
+            <li><a href="#">Guía de tallas</a></li>
+            <li><a href="mailto:ventas@imspa.cl">Contacto</a></li>
+          </ul>
+        </nav>
+
+        <section class="footer-social">
+          <h3>Conecta</h3>
+          <div class="social-links">
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5"/>
+                <circle cx="12" cy="12" r="5"/>
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+              </svg>
+              Instagram
+            </a>
+            <a href="#" aria-label="X / Twitter">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.844L2.25 2.25H8.08l4.26 5.635zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+              X
+            </a>
+          </div>
+        </section>
+      </div>
+
       <div class="container footer-bottom">
         <p>© <span id="year"></span> IM Sportswear. Todos los derechos reservados.</p>
         <div>
@@ -339,253 +156,6 @@
       </div>
     </footer>
 
-    <script>
-      document.getElementById('year').textContent = new Date().getFullYear();
-
-      const CATEGORY_MAP = {
-        'tennis-tee':  ['mujer', 'hombre', 'performance'],
-        'gorro-osaka': ['unisex', 'lifestyle'],
-        'calza-dua':   ['mujer', 'performance'],
-        'peto-dryfit': ['mujer', 'performance']
-      };
-
-      function formatPrice(n) {
-        return '$' + n.toLocaleString('es-CL');
-      }
-
-      function totalStock(variants) {
-        return Object.values(variants).reduce((a, sizes) =>
-          a + Object.values(sizes).reduce((b, s) => b + s, 0), 0);
-      }
-
-      function buildCard(p) {
-        const generos = Object.keys(p.variants);
-        const hasGenero = generos.length > 1 || (generos.length === 1 && generos[0] !== 'Unisex');
-        const totalS = totalStock(p.variants);
-
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        card.dataset.id = p.id;
-        card.dataset.cats = JSON.stringify(CATEGORY_MAP[p.id] || []);
-
-        card.innerHTML = `
-          <div class="product-image">
-            <img src="/assets/img/${p.id}.jpg" alt="${p.name}"
-              onerror="this.parentElement.style.background='#ece9e4';this.style.display='none'"
-              loading="lazy" />
-            ${totalS === 0 ? '<span class="product-badge badge-agotado">Agotado</span>' : '<span class="product-badge">Nuevo</span>'}
-          </div>
-          <div class="product-info">
-            <p class="product-category">${p.subtitle}</p>
-            <p class="product-name">${p.name}</p>
-            <p class="product-price">${formatPrice(p.price)}</p>
-
-            ${hasGenero ? `
-            <div class="variant-group">
-              <div class="variant-label">Género <span class="sel-genero">—</span></div>
-              <div class="variant-options genero-opts">
-                ${generos.map(g => `<button class="variant-opt" data-val="${g}">${g}</button>`).join('')}
-              </div>
-            </div>` : ''}
-
-            <div class="variant-group">
-              <div class="variant-label">Color <span class="sel-color">—</span></div>
-              <div class="variant-options color-opts"></div>
-            </div>
-
-            <div class="variant-group talla-group" style="display:none">
-              <div class="variant-label">Talla <span class="sel-talla">—</span></div>
-              <div class="variant-options talla-opts"></div>
-            </div>
-
-            <div class="stock-info" id="stock-${p.id}"></div>
-
-            <a class="btn-buy" id="btn-${p.id}" href="#" target="_blank"
-              onclick="return handleBuy(event, '${p.id}')">Selecciona opciones</a>
-          </div>
-        `;
-
-        // State
-        let state = {
-          genero: generos.length === 1 ? generos[0] : null,
-          color: null,
-          talla: null
-        };
-
-        const variants = p.variants;
-
-        function getColors() {
-          const g = state.genero || generos[0];
-          return g && variants[g] ? Object.keys(variants[g]) : [];
-        }
-
-        function getSizes() {
-          const g = state.genero || generos[0];
-          return g && state.color && variants[g][state.color]
-            ? variants[g][state.color] : {};
-        }
-
-        function renderColors() {
-          const opts = card.querySelector('.color-opts');
-          const colors = getColors();
-          opts.innerHTML = colors.map(c => {
-            const totalC = Object.values(variants[state.genero || generos[0]][c]).reduce((a,b)=>a+b,0);
-            return `<button class="color-dot ${state.color===c?'selected':''}"
-              data-color="${c}" data-val="${c}"
-              title="${c}" ${totalC===0?'disabled':''}></button>`;
-          }).join('');
-          opts.querySelectorAll('.color-dot').forEach(b => {
-            b.addEventListener('click', () => {
-              state.color = b.dataset.val;
-              state.talla = null;
-              update();
-            });
-          });
-        }
-
-        function renderTallas() {
-          const group = card.querySelector('.talla-group');
-          const sizes = getSizes();
-          const keys = Object.keys(sizes);
-          if (!state.color || keys.length === 0) { group.style.display = 'none'; return; }
-          if (keys.length === 1 && keys[0] === 'Única') {
-            state.talla = 'Única';
-            group.style.display = 'none';
-            return;
-          }
-          group.style.display = '';
-          const opts = card.querySelector('.talla-opts');
-          opts.innerHTML = keys.map(t =>
-            `<button class="variant-opt ${state.talla===t?'selected':''}"
-              data-val="${t}" ${sizes[t]===0?'disabled':''}>${t}</button>`
-          ).join('');
-          opts.querySelectorAll('.variant-opt').forEach(b => {
-            b.addEventListener('click', () => {
-              state.talla = b.dataset.val;
-              update();
-            });
-          });
-        }
-
-        function renderStock() {
-          const el = card.querySelector(`#stock-${p.id}`);
-          if (!state.talla || !state.color) { el.textContent = ''; return; }
-          const sizes = getSizes();
-          const qty = sizes[state.talla] || 0;
-          if (qty === 0) { el.className = 'stock-info out'; el.textContent = 'Sin stock'; }
-          else if (qty <= 2) { el.className = 'stock-info low'; el.textContent = `Últimas ${qty} unidades`; }
-          else { el.className = 'stock-info'; el.textContent = `Stock disponible`; }
-        }
-
-        function renderBtn() {
-          const btn = card.querySelector(`#btn-${p.id}`);
-          const sizes = getSizes();
-          const ready = state.color && state.talla;
-          const qty = ready ? (sizes[state.talla] || 0) : 1;
-
-          if (!ready) {
-            btn.textContent = 'Selecciona opciones';
-            btn.className = 'btn-buy pending';
-            btn.href = '#';
-            return;
-          }
-          if (qty === 0) {
-            btn.textContent = 'Agotado';
-            btn.className = 'btn-buy';
-            btn.setAttribute('disabled', true);
-            btn.href = '#';
-            return;
-          }
-          if (p.sumup_link === 'PENDIENTE') {
-            btn.textContent = 'Próximamente';
-            btn.className = 'btn-buy pending';
-            btn.href = '#';
-            return;
-          }
-          btn.textContent = `Comprar — ${formatPrice(p.price)}`;
-          btn.className = 'btn-buy';
-          btn.removeAttribute('disabled');
-          btn.href = p.sumup_link;
-        }
-
-        function update() {
-          // Labels
-          const sg = card.querySelector('.sel-genero');
-          const sc = card.querySelector('.sel-color');
-          const st = card.querySelector('.sel-talla');
-          if (sg) sg.textContent = state.genero || '—';
-          if (sc) sc.textContent = state.color || '—';
-          if (st) st.textContent = state.talla || '—';
-
-          // Re-render colors selected state
-          card.querySelectorAll('.color-dot').forEach(b => {
-            b.classList.toggle('selected', b.dataset.val === state.color);
-          });
-          card.querySelectorAll('.genero-opts .variant-opt').forEach(b => {
-            b.classList.toggle('selected', b.dataset.val === state.genero);
-          });
-
-          renderTallas();
-          renderStock();
-          renderBtn();
-        }
-
-        // Genero clicks
-        card.querySelectorAll('.genero-opts .variant-opt').forEach(b => {
-          b.addEventListener('click', () => {
-            state.genero = b.dataset.val;
-            state.color = null;
-            state.talla = null;
-            renderColors();
-            update();
-          });
-        });
-
-        // Init
-        if (generos.length === 1) state.genero = generos[0];
-        renderColors();
-        update();
-
-        return card;
-      }
-
-      window.handleBuy = function(e, id) {
-        const btn = document.getElementById('btn-' + id);
-        if (!btn.href || btn.href === '#' || btn.href.endsWith('#')) {
-          e.preventDefault();
-          return false;
-        }
-        return true;
-      };
-
-      // Filters
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          const filter = btn.dataset.filter;
-          let visible = 0;
-          document.querySelectorAll('.product-card').forEach(card => {
-            const cats = JSON.parse(card.dataset.cats || '[]');
-            const show = filter === 'all' || cats.includes(filter);
-            card.classList.toggle('hidden', !show);
-            if (show) visible++;
-          });
-          document.getElementById('shop-empty').style.display = visible === 0 ? 'block' : 'none';
-        });
-      });
-
-      // Load products
-      fetch('stock.json')
-        .then(r => r.json())
-        .then(data => {
-          const grid = document.getElementById('shop-grid');
-          data.products.forEach(p => grid.appendChild(buildCard(p)));
-        })
-        .catch(() => {
-          document.getElementById('shop-grid').innerHTML =
-            '<p style="color:var(--muted);grid-column:1/-1;text-align:center;padding:60px 0">Error al cargar productos.</p>';
-        });
-    </script>
+    <script src="/assets/shop.js" defer></script>
   </body>
 </html>
