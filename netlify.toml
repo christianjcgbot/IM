@@ -5,6 +5,24 @@
   force = true
 
 [[redirects]]
+  from = "https://shop.imsportswear.cl/assets/*"
+  to = "/assets/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "https://shop.imsportswear.cl/terminos.html"
+  to = "/terminos.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "https://shop.imsportswear.cl/privacidad.html"
+  to = "/privacidad.html"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "https://shop.imsportswear.cl/*"
   to = "/shop/:splat"
   status = 200
