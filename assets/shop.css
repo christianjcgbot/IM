@@ -89,10 +89,10 @@
 .cat-btn svg { transition: transform 0.2s; }
 .cat-btn.has-sub.active svg { transform: rotate(180deg); }
 
-/* Sub-row — appears below main row */
+/* Sub-row dropdown — outside overflow container so it's not clipped */
 .shop-subcats {
   display: none;
-  background: var(--beige-soft);
+  background: #fff;
   border-bottom: 1px solid var(--line);
 }
 .shop-subcats.visible { display: block; }
@@ -109,11 +109,11 @@
   border-bottom: 2px solid transparent;
   cursor: pointer;
   font-family: var(--font-ui);
-  font-size: 0.65rem;
-  letter-spacing: 0.18em;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
-  padding: 12px 20px;
+  padding: 14px 20px;
   transition: color 0.2s, border-color 0.2s;
   white-space: nowrap;
 }

@@ -140,22 +140,16 @@ if (grid) {
   document.querySelectorAll('.cat-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const subId = btn.dataset.sub;
+      const cat = btn.dataset.cat;
       clearActive();
       btn.classList.add('active');
-      filterProducts(btn.dataset.cat);
-      // Show sub-row if applicable and reset its active state
+      filterProducts(cat === 'all' ? 'all' : cat);
       if (subId) {
         const subRow = document.getElementById(subId);
-        if (subRow) {
-          subRow.classList.add('visible');
-          subRow.querySelectorAll('.subcat-btn').forEach((b,i) => b.classList.toggle('active', i===0));
-        }
+        if (subRow) subRow.classList.add('visible');
       }
     });
   });
-
-  // Default: filter to Tenis on load
-  filterProducts('tenis');
 
   // Sub-category buttons
   document.querySelectorAll('.subcat-btn').forEach(btn => {

@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/assets/styles.css?v=2.2" />
-    <link rel="stylesheet" href="/assets/shop.css?v=1.1" />
+    <link rel="stylesheet" href="/assets/shop.css?v=1.2" />
   </head>
   <body>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -69,33 +69,31 @@
 
       <div class="shop-cats">
         <div class="container shop-cats-inner">
-          <div class="cat-item">
-            <button class="cat-btn has-sub active" data-cat="tenis" data-sub="sub-tenis">
-              Tenis
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
-          </div>
-          <div class="cat-item"><button class="cat-btn" data-cat="running">Running</button></div>
-          <div class="cat-item">
-            <button class="cat-btn has-sub" data-cat="urban" data-sub="sub-urban">
-              Urban
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
-          </div>
-          <div class="cat-item"><button class="cat-btn" data-cat="accesorios">Accesorios</button></div>
+          <button class="cat-btn active" data-cat="all">Todo</button>
+          <button class="cat-btn has-sub" data-cat="tenis" data-sub="sub-tenis">
+            Tenis
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <button class="cat-btn" data-cat="running">Running</button>
+          <button class="cat-btn has-sub" data-cat="urban" data-sub="sub-urban">
+            Urban
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <button class="cat-btn" data-cat="accesorios">Accesorios</button>
         </div>
-      </div>
 
-      <div class="shop-subcats visible" id="sub-tenis">
-        <div class="container shop-subcats-inner">
-          <button class="subcat-btn" data-cat="tenis-mujer">Mujer</button>
-          <button class="subcat-btn" data-cat="tenis-hombre">Hombre</button>
+        <!-- Dropdowns fuera del overflow-x para que no se corten -->
+        <div class="shop-subcats" id="sub-tenis">
+          <div class="container shop-subcats-inner">
+            <button class="subcat-btn" data-cat="tenis-mujer">Mujer</button>
+            <button class="subcat-btn" data-cat="tenis-hombre">Hombre</button>
+          </div>
         </div>
-      </div>
-      <div class="shop-subcats" id="sub-urban">
-        <div class="container shop-subcats-inner">
-          <button class="subcat-btn" data-cat="urban-mujer">Mujer</button>
-          <button class="subcat-btn" data-cat="urban-hombre">Hombre</button>
+        <div class="shop-subcats" id="sub-urban">
+          <div class="container shop-subcats-inner">
+            <button class="subcat-btn" data-cat="urban-mujer">Mujer</button>
+            <button class="subcat-btn" data-cat="urban-hombre">Hombre</button>
+          </div>
         </div>
       </div>
 
