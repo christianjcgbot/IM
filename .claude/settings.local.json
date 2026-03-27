@@ -11,7 +11,9 @@
       "Bash(brew install:*)",
       "Bash(gh api:*)",
       "Bash(gh repo:*)",
-      "WebFetch(domain:69c493bb7027c4540982b0ad--curious-lamington-bb8a0c.netlify.app)"
+      "WebFetch(domain:69c493bb7027c4540982b0ad--curious-lamington-bb8a0c.netlify.app)",
+      "WebFetch(domain:imsportswear.cl)",
+      "WebFetch(domain:imsportswear.com)"
     ]
   }
 }

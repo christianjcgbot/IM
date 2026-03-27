@@ -1,0 +1,60 @@
+{
+  "products": [
+    {
+      "id": "tennis-tee",
+      "name": "Tennis Tee",
+      "subtitle": "Dryfit Performance",
+      "price": 25990,
+      "sumup_link": "PENDIENTE",
+      "variants": {
+        "Mujer": {
+          "Negro":  { "XS": 2, "M": 3, "L": 3 },
+          "Navy":   { "M": 3, "L": 3 },
+          "Blanco": { "M": 3, "L": 3 }
+        },
+        "Hombre": {
+          "Negro": { "L": 3, "XL": 3 },
+          "Navy":  { "L": 3 }
+        }
+      }
+    },
+    {
+      "id": "gorro-osaka",
+      "name": "Gorro Osaka",
+      "subtitle": "Lifestyle Cap",
+      "price": 14990,
+      "sumup_link": "PENDIENTE",
+      "variants": {
+        "Unisex": {
+          "Blanco": { "Única": 3 },
+          "Burdeo": { "Única": 3 },
+          "Negro":  { "Única": 3 }
+        }
+      }
+    },
+    {
+      "id": "calza-dua",
+      "name": "Calza Larga DUA",
+      "subtitle": "Performance",
+      "price": 22990,
+      "sumup_link": "PENDIENTE",
+      "variants": {
+        "Mujer": {
+          "Negro": { "S": 2, "M": 3, "L": 3 }
+        }
+      }
+    },
+    {
+      "id": "peto-dryfit",
+      "name": "Peto Dryfit",
+      "subtitle": "Performance",
+      "price": 17990,
+      "sumup_link": "PENDIENTE",
+      "variants": {
+        "Mujer": {
+          "Negro": { "XS": 1, "M": 3, "L": 3, "XL": 3 }
+        }
+      }
+    }
+  ]
+}
