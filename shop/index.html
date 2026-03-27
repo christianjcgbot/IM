@@ -69,35 +69,36 @@
 
       <div class="shop-cats">
         <div class="container shop-cats-inner">
+          <div class="cat-item"><button class="cat-btn active" data-cat="all">Todo</button></div>
           <div class="cat-item">
-            <button class="cat-btn active" data-cat="all">Todo</button>
-          </div>
-          <div class="cat-item" id="ci-tenis">
-            <button class="cat-btn" data-cat="tenis">
+            <button class="cat-btn has-sub" data-cat="tenis" data-sub="sub-tenis">
               Tenis
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
             </button>
-            <div class="cat-dropdown">
-              <button data-cat="tenis-mujer">Tenis Mujer</button>
-              <button data-cat="tenis-hombre">Tenis Hombre</button>
-            </div>
           </div>
+          <div class="cat-item"><button class="cat-btn" data-cat="running">Running</button></div>
           <div class="cat-item">
-            <button class="cat-btn" data-cat="running">Running</button>
-          </div>
-          <div class="cat-item" id="ci-urban">
-            <button class="cat-btn" data-cat="urban">
+            <button class="cat-btn has-sub" data-cat="urban" data-sub="sub-urban">
               Urban
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
             </button>
-            <div class="cat-dropdown">
-              <button data-cat="urban-mujer">Urban Mujer</button>
-              <button data-cat="urban-hombre">Urban Hombre</button>
-            </div>
           </div>
-          <div class="cat-item">
-            <button class="cat-btn" data-cat="accesorios">Accesorios</button>
-          </div>
+          <div class="cat-item"><button class="cat-btn" data-cat="accesorios">Accesorios</button></div>
+        </div>
+      </div>
+
+      <div class="shop-subcats" id="sub-tenis">
+        <div class="container shop-subcats-inner">
+          <button class="subcat-btn active" data-cat="tenis">Todos Tenis</button>
+          <button class="subcat-btn" data-cat="tenis-mujer">Mujer</button>
+          <button class="subcat-btn" data-cat="tenis-hombre">Hombre</button>
+        </div>
+      </div>
+      <div class="shop-subcats" id="sub-urban">
+        <div class="container shop-subcats-inner">
+          <button class="subcat-btn active" data-cat="urban">Todos Urban</button>
+          <button class="subcat-btn" data-cat="urban-mujer">Mujer</button>
+          <button class="subcat-btn" data-cat="urban-hombre">Hombre</button>
         </div>
       </div>
 

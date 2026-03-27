@@ -32,8 +32,8 @@ const PRODUCTS = [
   {
     id: 'calza-dua',
     name: 'Calza Larga DUA',
-    subtitle: 'Running Mujer',
-    cats: ['running', 'mujer'],
+    subtitle: 'Running · Mujer',
+    cats: ['running'],
     price: 22990,
     link: 'https://pay.sumup.com/b2c/QULM76D1',
     desc: 'Calza de compresión larga para running y entrenamiento. Tejido dryfit de 4 vías de elasticidad, costuras planas anti-roce. Diseñada para máximo confort en cada kilómetro.',
@@ -44,8 +44,8 @@ const PRODUCTS = [
   {
     id: 'peto-dryfit',
     name: 'Peto Dryfit',
-    subtitle: 'Running Mujer',
-    cats: ['running', 'mujer'],
+    subtitle: 'Running · Mujer',
+    cats: ['running'],
     price: 17990,
     link: 'https://pay.sumup.com/b2c/QSJ3UCPD',
     desc: 'Peto deportivo dryfit de alto rendimiento. Escote deportivo con espalda descubierta para mayor movilidad. Ideal para running, entrenamiento y yoga.',
@@ -121,54 +121,47 @@ if (grid) {
   function filterProducts(f) {
     let visible = 0;
     document.querySelectorAll('.product-card-item').forEach(c => {
-      const cats = JSON.parse(c.dataset.cats||'[]');
-      const show = f==='all' || cats.includes(f);
+      const cats = JSON.parse(c.dataset.cats || '[]');
+      const show = f === 'all' || cats.includes(f);
       c.classList.toggle('hidden', !show);
       if (show) visible++;
     });
     const empty = document.getElementById('grid-empty');
-    if (empty) empty.style.display = visible===0 ? 'block' : 'none';
+    if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  function clearActive() {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.subcat-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.shop-subcats').forEach(s => s.classList.remove('visible'));
   }
 
   // Main category buttons
   document.querySelectorAll('.cat-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const item = btn.closest('.cat-item');
-      const hasDropdown = item && item.querySelector('.cat-dropdown');
-
-      // Toggle dropdown if exists
-      if (hasDropdown) {
-        const isOpen = item.classList.contains('open');
-        document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('open'));
-        if (!isOpen) { item.classList.add('open'); return; }
-        return;
-      }
-
-      // Close all dropdowns
-      document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('open'));
-      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.cat-dropdown button').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      filterProducts(btn.dataset.cat);
-    });
-  });
-
-  // Dropdown sub-buttons
-  document.querySelectorAll('.cat-dropdown button').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.cat-dropdown button').forEach(b => b.classList.remove('active'));
+      const subId = btn.dataset.sub;
+      clearActive();
       btn.classList.add('active');
-      document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('open'));
       filterProducts(btn.dataset.cat);
+      // Show sub-row if applicable and reset its active state
+      if (subId) {
+        const subRow = document.getElementById(subId);
+        if (subRow) {
+          subRow.classList.add('visible');
+          subRow.querySelectorAll('.subcat-btn').forEach((b,i) => b.classList.toggle('active', i===0));
+        }
+      }
     });
   });
 
-  // Close dropdowns clicking outside
-  document.addEventListener('click', e => {
-    if (!e.target.closest('.cat-item')) {
-      document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('open'));
-    }
+  // Sub-category buttons
+  document.querySelectorAll('.subcat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const row = btn.closest('.shop-subcats');
+      row.querySelectorAll('.subcat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filterProducts(btn.dataset.cat);
+    });
   });
 }
 
