@@ -15,7 +15,15 @@
       "WebFetch(domain:imsportswear.cl)",
       "WebFetch(domain:imsportswear.com)",
       "WebFetch(domain:shop.imsportswear.cl)",
-      "Bash(dig shop.imsportswear.cl CNAME +short)"
+      "Bash(dig shop.imsportswear.cl CNAME +short)",
+      "Read(//Users/christian/Downloads/**)",
+      "Bash(npm create:*)",
+      "Bash(npx sv:*)",
+      "Bash(npm install:*)",
+      "Read(//private/tmp/**)"
+    ],
+    "additionalDirectories": [
+      "/Users/christian/Downloads/im-platform"
     ]
   }
 }
